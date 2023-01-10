@@ -1,7 +1,11 @@
 import "./App.css";
 
-function App() {
-  return <div>test</div>;
-}
+export default function App() {
+  const currentDate = new Date().toISOString().substring(0, 10);
 
-export default App;
+  return (
+    <form>
+      <input type="date" defaultValue={currentDate} />
+    </form>
+  );
+}

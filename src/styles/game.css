@@ -1,0 +1,23 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  margin: 2rem;
+  width: 24rem;
+}
+
+.game-row {
+  padding: 0.5rem 1rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  border-bottom: solid;
+}
+
+.team-row {
+  display: flex;
+  justify-content: space-between;
+}

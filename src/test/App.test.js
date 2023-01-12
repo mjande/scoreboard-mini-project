@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "../components/App";
 
 // TODO: Move API mocks and mock data to separate file
 function setupFetchStub(data) {
@@ -14,14 +14,14 @@ function setupFetchStub(data) {
 
 // jest.spyOn(global, "fetch").mockImplementation(setupFetchStub(fakeData));
 
-it("renders at least one game on initial page load", () => {
+it("renders at least one game on initial page load", async () => {
   render(<App />);
-  const games = screen.getByRole("game");
+  const games = await screen.findAllByTestId("game");
   expect(games.length).toBeGreaterThan(1);
 });
 
-it("renders games on date change", () => {
+it("renders games on date change", async () => {
   render(<App />);
-  const games = screen.getAllByRole("game for 1/11/22");
+  const games = await screen.findAllByTestId("game");
   expect(games.length).toBeGreaterThan(1);
 });

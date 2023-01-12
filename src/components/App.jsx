@@ -7,20 +7,16 @@ export default function App() {
 
   const [games, setGames] = useState([]);
 
-  async function updateGames() {
-    const date = document.getElementById("date-input").value;
-    const url = new URL(
-      "http://localhost:1234/v2/games?date=2022-05-12&priority_order=true"
-    );
-    url.searchParams.append("date", date);
-
-    const response = await fetch(url, { mode: "cors" });
-    const json = await response.json();
-    setGames(json.data);
-    console.log(json.data[0]);
-  }
-
   useEffect(() => {
+    async function updateGames() {
+      const url = new URL("http://localhost:1234/v2/games?");
+      url.searchParams.append("date", date);
+
+      const response = await fetch(url, { mode: "cors" });
+      const json = await response.json();
+      setGames(json.data);
+    }
+
     updateGames();
   }, [date]);
 
@@ -32,7 +28,7 @@ export default function App() {
           id="date-input"
           type="date"
           defaultValue={date}
-          onChange={(e) => setDate(e.value)}
+          onChange={(e) => setDate(e.target.value)}
         />
       </form>
       <div id="games-container">

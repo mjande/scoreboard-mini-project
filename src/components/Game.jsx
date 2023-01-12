@@ -6,7 +6,7 @@ export default function Game({ data }) {
   const team2Score = data["game_teams"][1]["score"];
 
   return (
-    <div>
+    <div data-testid={"game"}>
       <div>{date}</div>
       <div>{team1.state}</div>
       <div>{`${team1.name} ${team1.mascot} ${team1Score}`}</div>

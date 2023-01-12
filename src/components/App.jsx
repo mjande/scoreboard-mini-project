@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import dayjsf from "dayjs";
+import Form from "./Form";
 import Game from "./Game";
 import "../styles/App.css";
 import dayjs from "dayjs";
@@ -27,15 +27,7 @@ export default function App() {
     <>
       <nav></nav>
       <h1>Scoreboard</h1>
-      <form>
-        <input
-          id="date-input"
-          aria-label="date-input"
-          type="date"
-          defaultValue={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </form>
+      <Form date={date} setDate={setDate} />
       <h2>Games for {dayjs(date).format("dddd, MMMM D, YYYY")}</h2>
       <div className="games-container">
         {games.map((game) => (

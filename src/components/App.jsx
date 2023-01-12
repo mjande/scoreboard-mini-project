@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import dayjsf from "dayjs";
 import Game from "./Game";
 import "../styles/App.css";
+import dayjs from "dayjs";
 
 export default function App() {
   const todaysDate = new Date(Date.now()).toISOString().substring(0, 10);
@@ -23,6 +25,7 @@ export default function App() {
 
   return (
     <>
+      <nav></nav>
       <h1>Scoreboard</h1>
       <form>
         <input
@@ -33,6 +36,7 @@ export default function App() {
           onChange={(e) => setDate(e.target.value)}
         />
       </form>
+      <h2>Games for {dayjs(date).format("dddd, MMMM D, YYYY")}</h2>
       <div className="games-container">
         {games.map((game) => (
           <Game key={game.id} data={game} />

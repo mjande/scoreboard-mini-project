@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 export default function App() {
   const todaysDate = new Date(Date.now()).toISOString().substring(0, 10);
   const [date, setDate] = useState(todaysDate);
+  const [sportId, setSportId] = useState("");
+  const [stateCode, setStateCode] = useState("");
 
   const [games, setGames] = useState([]);
 
@@ -14,6 +16,12 @@ export default function App() {
     async function updateGames() {
       const url = new URL("http://localhost:1234/v2/games?");
       url.searchParams.append("date", date);
+      if (sportId) {
+        url.searchParams.append("sport_id", sportId);
+      }
+      if (stateCode) {
+        url.searchParams.append("state", stateCode);
+      }
 
       const response = await fetch(url, { mode: "cors" });
       const json = await response.json();
@@ -21,18 +29,23 @@ export default function App() {
     }
 
     updateGames();
-  }, [date]);
+  }, [date, sportId, stateCode]);
 
   return (
     <>
       <nav></nav>
       <h1>Scoreboard</h1>
-      <Form date={date} setDate={setDate} />
+      <Form
+        date={date}
+        setDate={setDate}
+        setSportId={setSportId}
+        setStateCode={setStateCode}
+      />
       <h2>Games for {dayjs(date).format("dddd, MMMM D, YYYY")}</h2>
       <div className="games-container">
-        {games.map((game) => (
-          <Game key={game.id} data={game} />
-        ))}
+        {games.length >= 1
+          ? games.map((game) => <Game key={game.id} data={game} />)
+          : "Sorry, there are no games on this date that match those conditions."}
       </div>
     </>
   );

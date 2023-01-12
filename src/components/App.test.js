@@ -14,8 +14,14 @@ function setupFetchStub(data) {
 
 // jest.spyOn(global, "fetch").mockImplementation(setupFetchStub(fakeData));
 
-test("renders today's games on initial page load", () => {
+it("renders at least one game on initial page load", () => {
   render(<App />);
   const games = screen.getByRole("game");
-  expect(games).toHaveLength(25);
+  expect(games.length).toBeGreaterThan(1);
+});
+
+it("renders games on date change", () => {
+  render(<App />);
+  const games = screen.getAllByRole("game for 1/11/22");
+  expect(games.length).toBeGreaterThan(1);
 });

@@ -1,4 +1,4 @@
-import "../styles/game.css";
+import "../styles/Game.css";
 
 const sportDict = {
   1: "Basketball",

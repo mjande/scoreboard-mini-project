@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Game from "./Game";
-import "./App.css";
+import "../styles/App.css";
 
 export default function App() {
   const todaysDate = new Date(Date.now()).toISOString().substring(0, 10);
@@ -22,7 +22,7 @@ export default function App() {
   }, [date]);
 
   return (
-    <div>
+    <>
       <h1>Scoreboard</h1>
       <form>
         <input
@@ -33,11 +33,11 @@ export default function App() {
           onChange={(e) => setDate(e.target.value)}
         />
       </form>
-      <div id="games-container">
+      <div className="games-container">
         {games.map((game) => (
           <Game key={game.id} data={game} />
         ))}
       </div>
-    </div>
+    </>
   );
 }

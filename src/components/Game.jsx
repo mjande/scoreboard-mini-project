@@ -7,7 +7,7 @@ export default function Game({ data }) {
 
   return (
     <div data-testid={"game"}>
-      <div>{date}</div>
+      <div data-testid={"date"}>{date}</div>
       <div>{team1.state}</div>
       <div>{`${team1.name} ${team1.mascot} ${team1Score}`}</div>
       <div>{`${team2.name} ${team2.mascot} ${team2Score}`}</div>

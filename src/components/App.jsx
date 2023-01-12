@@ -3,7 +3,8 @@ import Game from "./Game";
 import "./App.css";
 
 export default function App() {
-  const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  const todaysDate = new Date(Date.now()).toISOString().substring(0, 10);
+  const [date, setDate] = useState(todaysDate);
 
   const [games, setGames] = useState([]);
 
@@ -26,6 +27,7 @@ export default function App() {
       <form>
         <input
           id="date-input"
+          aria-label="date-input"
           type="date"
           defaultValue={date}
           onChange={(e) => setDate(e.target.value)}

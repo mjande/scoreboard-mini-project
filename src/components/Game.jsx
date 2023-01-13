@@ -23,6 +23,14 @@ const genderDict = {
 };
 
 export default function Game({ data }) {
+  // Assigns team data for home and away to constant (doesn't account for neutral sites)
+  const homeTeam = data["game_teams"][0]["home"]
+    ? data["game_teams"][0]
+    : data["game_teams"][1];
+  const awayTeam = data["game_teams"][0]["home"]
+    ? data["game_teams"][1]
+    : data["game_teams"][0];
+
   const team1 = data["game_teams"][0]["team"];
   const team1Score = data["game_teams"][0]["score"];
   const team2 = data["game_teams"][1]["team"];
@@ -31,18 +39,19 @@ export default function Game({ data }) {
   return (
     <div data-testid={"game"} className="game-container">
       <div className="game-row info-row">
-        <div>{team1.state}</div>
-        <div>{genderDict[data["gender_id"]]}</div>
-        <div>{sportDict[team1.sport_id]}</div>
+        <div>{homeTeam["team"].state}</div>
+        <div>{`${genderDict[data["gender_id"]]} ${
+          sportDict[team1.sport_id]
+        }`}</div>
       </div>
 
       <div className="game-row team-row">
-        <div>{`${team1.name} ${team1.mascot}`}</div>
-        <div>{team1Score}</div>
+        <div>{`${homeTeam["team"].name} ${homeTeam["team"].mascot}`}</div>
+        <div>{homeTeam["score"]}</div>
       </div>
       <div className="game-row team-row">
-        <div>{`${team2.name} ${team2.mascot}`}</div>
-        <div>{team2Score}</div>
+        <div>{`${awayTeam["team"].name} ${awayTeam["team"].mascot}`}</div>
+        <div>{awayTeam["score"]}</div>
       </div>
     </div>
   );

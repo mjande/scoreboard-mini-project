@@ -9,6 +9,7 @@ export default function App() {
   const [date, setDate] = useState(todaysDate);
   const [sportId, setSportId] = useState("");
   const [stateCode, setStateCode] = useState("");
+  const [genderId, setGenderId] = useState("");
 
   const [games, setGames] = useState([]);
 
@@ -16,11 +17,15 @@ export default function App() {
     async function updateGames() {
       const url = new URL("http://localhost:1234/v2/games?");
       url.searchParams.append("date", date);
+
       if (sportId) {
         url.searchParams.append("sport_id", sportId);
       }
       if (stateCode) {
         url.searchParams.append("state", stateCode);
+      }
+      if (genderId) {
+        url.searchParams.append("gender_id", genderId);
       }
 
       const response = await fetch(url, { mode: "cors" });
@@ -29,7 +34,7 @@ export default function App() {
     }
 
     updateGames();
-  }, [date, sportId, stateCode]);
+  }, [date, sportId, stateCode, genderId]);
 
   return (
     <>
@@ -40,6 +45,8 @@ export default function App() {
         setDate={setDate}
         setSportId={setSportId}
         setStateCode={setStateCode}
+        genderId={genderId}
+        setGenderId={setGenderId}
       />
       <h2>Games for {dayjs(date).format("dddd, MMMM D, YYYY")}</h2>
       <div className="games-container">

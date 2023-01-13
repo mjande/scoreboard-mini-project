@@ -16,6 +16,12 @@ const sportDict = {
   13: "Tennis",
 };
 
+const genderDict = {
+  1: "Men's",
+  2: "Women's",
+  3: "Coed",
+};
+
 export default function Game({ data }) {
   const team1 = data["game_teams"][0]["team"];
   const team1Score = data["game_teams"][0]["score"];
@@ -26,6 +32,7 @@ export default function Game({ data }) {
     <div data-testid={"game"} className="game-container">
       <div className="game-row info-row">
         <div>{team1.state}</div>
+        <div>{genderDict[data["gender_id"]]}</div>
         <div>{sportDict[team1.sport_id]}</div>
       </div>
 

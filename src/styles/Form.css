@@ -1,0 +1,14 @@
+.filter-label {
+  border: solid;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.visually-hidden {
+  visibility: hidden;
+}
+
+.active {
+  background-color: #86efac;
+}

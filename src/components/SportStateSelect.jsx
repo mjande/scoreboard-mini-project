@@ -1,6 +1,12 @@
+import "../styles/SportStateSelect.css";
+
 export function SportSelect({ setSportId }) {
   return (
-    <select name="sport" onChange={(e) => setSportId(e.target.value)}>
+    <select
+      className="select-field"
+      name="sport"
+      onChange={(e) => setSportId(e.target.value)}
+    >
       <option value="">Sport</option>
       <option value="1">Basketball</option>
       <option value="2">Football</option>
@@ -21,7 +27,11 @@ export function SportSelect({ setSportId }) {
 
 export function StateSelect({ setStateCode }) {
   return (
-    <select name="state" onChange={(e) => setStateCode(e.target.value)}>
+    <select
+      className="select-field"
+      name="state"
+      onChange={(e) => setStateCode(e.target.value)}
+    >
       <option value="">State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>

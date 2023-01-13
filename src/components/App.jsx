@@ -46,10 +46,12 @@ export default function App() {
     <>
       <nav></nav>
       <h1>Scoreboard</h1>
-      <form>
+      <form className="query-form">
         <DateInput date={date} setDate={setDate} />
-        <SportSelect setSportId={setSportId} />
-        <StateSelect setStateCode={setStateCode} />
+        <div>
+          <SportSelect setSportId={setSportId} />
+          <StateSelect setStateCode={setStateCode} />
+        </div>
         <GenderFilters genderId={genderId} setGenderId={setGenderId} />
         <StatusFilters statusId={statusId} setStatusId={setStatusId} />
       </form>

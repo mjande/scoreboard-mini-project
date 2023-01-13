@@ -2,7 +2,7 @@ import "../styles/filters.css";
 
 export default function GenderFilters({ genderId, setGenderId }) {
   return (
-    <div>
+    <div className="filters-container">
       <label
         htmlFor="all-genders"
         className={"filter-label " + (genderId ? "" : "active")}

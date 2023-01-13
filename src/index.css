@@ -12,6 +12,9 @@ code {
     monospace;
 }
 
+h1 {
+  margin: 0;
+}
 
 #root {
   display: flex;

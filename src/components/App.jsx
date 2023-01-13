@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Form from "./Form";
 import DateInput from "./DateInput";
+import { SportSelect, StateSelect } from "./SportStateSelect";
 import Game from "./Game";
 import "../styles/App.css";
 import dayjs from "dayjs";
@@ -44,16 +44,11 @@ export default function App() {
       <h1>Scoreboard</h1>
       <form>
         <DateInput date={date} setDate={setDate} />
+        <SportSelect setSportId={setSportId} />
+        <StateSelect setStateCode={setStateCode} />
+        <GenderFilters genderId={genderId} setGenderId={setGenderId} />
       </form>
 
-      <Form
-        date={date}
-        setDate={setDate}
-        setSportId={setSportId}
-        setStateCode={setStateCode}
-        genderId={genderId}
-        setGenderId={setGenderId}
-      />
       <h2>Games for {dayjs(date).format("dddd, MMMM D, YYYY")}</h2>
       <div className="games-container">
         {games.length >= 1

@@ -1,3 +1,5 @@
+import "../styles/GenderFilters.css";
+
 export default function GenderFilters({ genderId, setGenderId }) {
   return (
     <div>

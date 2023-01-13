@@ -6,7 +6,7 @@ created by Matt Anderson (mjande)
 - React
 - Create React App (Webpacker, Jest, React Testing Library, etc.)
 
-I did experiment a bit with the react-rails gem, but as I had no prior experience with it, I decided to keep things simple and start with a create-react-app project instead.
+At first, I experimented a bit with the react-rails gem, but as I had no prior experience with it, I eventually decided to keep things simple and start with a create-react-app project instead.
 
 ## Installation
 
@@ -21,4 +21,4 @@ npm start
 
 ## Tests
 
-I added a few tests to make sure my components could handle the API data properly. They can be run with `npm test`.
+I added a small number tests to make sure the components could handle the API data properly. They can be run with `npm test`.

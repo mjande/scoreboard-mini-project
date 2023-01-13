@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Form from "./Form";
+import DateInput from "./DateInput";
 import Game from "./Game";
 import "../styles/App.css";
 import dayjs from "dayjs";
+import GenderFilters from "./GenderFilters";
 
 export default function App() {
   const todaysDate = new Date(Date.now()).toISOString().substring(0, 10);
@@ -40,6 +42,10 @@ export default function App() {
     <>
       <nav></nav>
       <h1>Scoreboard</h1>
+      <form>
+        <DateInput date={date} setDate={setDate} />
+      </form>
+
       <Form
         date={date}
         setDate={setDate}

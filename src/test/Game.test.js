@@ -31,3 +31,19 @@ it("renders normally with ideal data", () => {
   );
   expect(screen.getByTestId("away-team-score").textContent).toBe("12");
 });
+
+it("renders correctly with missing mascot image", () => {
+  const badGameData = gameData;
+  badGameData["game_teams"][0]["team"].image = null;
+
+  render(<Game data={badGameData} />);
+  expect(screen.queryByTestId("home-team-img")).not.toBeInTheDocument();
+});
+
+it("renders correctly with missing mascot name", () => {
+  const badGameData = gameData;
+  badGameData["game_teams"][0]["team"].mascot = null;
+  render(<Game data={badGameData} />);
+
+  expect(screen.getByTestId("home-team-name").textContent).toBe("Team 1 ");
+});

@@ -32,19 +32,21 @@ export default function Game({ data }) {
     : data["game_teams"][0];
 
   const state = homeTeam["team"].state;
-  const sport = `${genderDict[data["gender_id"]]} ${sportDict[data.sport_id]}`;
+  const sport = `${genderDict[data.gender_id]} ${sportDict[data.sport_id]}`;
 
   // If no image data, img element var is undefined
   const homeTeamImg = homeTeam["team"]["image"] && (
     <img
       src={homeTeam["team"]["image"]}
       alt={`${homeTeam["team"].name} mascot`}
+      data-testid="home-team-img"
     />
   );
   const awayTeamImg = awayTeam["team"]["image"] && (
     <img
       src={awayTeam["team"]["image"]}
       alt={`${awayTeam["team"].name} mascot`}
+      data-testid="away-team-img"
     />
   );
 
@@ -56,26 +58,30 @@ export default function Game({ data }) {
   const awayTeamName = `vs. ${awayTeam["team"].name} ${awayTeamMascot}`;
 
   return (
-    <div data-testid={"game"} className="game-container">
+    <div className="game-container" data-testid="game">
       <div className="game-row info-row">
-        <div>{state}</div>
-        <div>{sport}</div>
+        <div data-testid="state">{state}</div>
+        <div data-testid="sport">{sport}</div>
       </div>
 
       <div className="game-row team-row">
         <div className="mascot-team">
           {homeTeamImg}
-          <div>{homeTeamName}</div>
+          <div data-testid="home-team-name">{homeTeamName}</div>
         </div>
-        <div className="team-score">{homeTeam["score"]}</div>
+        <div className="team-score" data-testid="home-team-score">
+          {homeTeam["score"]}
+        </div>
       </div>
       <div className="game-row team-row">
         <div className="mascot-team">
           {awayTeamImg}
-          <div>{awayTeamName}</div>
+          <div data-testid="away-team-name">{awayTeamName}</div>
         </div>
 
-        <div className="team-score">{awayTeam["score"]}</div>
+        <div className="team-score" data-testid="away-team-score">
+          {awayTeam["score"]}
+        </div>
       </div>
     </div>
   );

@@ -27,3 +27,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.mascot-team {
+  display: flex;
+  gap: 0.5rem;
+}
+
+img {
+  width: 1rem;
+}

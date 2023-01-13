@@ -31,27 +31,53 @@ export default function Game({ data }) {
     ? data["game_teams"][1]
     : data["game_teams"][0];
 
-  const team1 = data["game_teams"][0]["team"];
-  const team1Score = data["game_teams"][0]["score"];
-  const team2 = data["game_teams"][1]["team"];
-  const team2Score = data["game_teams"][1]["score"];
+  const state = homeTeam["team"].state;
+  const sport = `${genderDict[data["gender_id"]]} ${sportDict[data.sport_id]}`;
+
+  // If no image data, img element var is undefined
+  const homeTeamImg = homeTeam["team"]["image"] && (
+    <img
+      src={homeTeam["team"]["image"]}
+      alt={`${homeTeam["team"].name} mascot`}
+    />
+  );
+  const awayTeamImg = awayTeam["team"]["image"] && (
+    <img
+      src={awayTeam["team"]["image"]}
+      alt={`${awayTeam["team"].name} mascot`}
+    />
+  );
+
+  // In case either team is missing mascot data
+  const homeTeamMascot = homeTeam["team"].mascot || "";
+  const awayTeamMascot = awayTeam["team"].mascot || "";
+
+  const homeTeamName = `${homeTeam["team"].name} ${homeTeamMascot}`;
+  const awayTeamName = `vs. ${awayTeam["team"].name} ${awayTeamMascot}`;
+
+  console.log(awayTeam["team"].mascot);
 
   return (
     <div data-testid={"game"} className="game-container">
       <div className="game-row info-row">
-        <div>{homeTeam["team"].state}</div>
-        <div>{`${genderDict[data["gender_id"]]} ${
-          sportDict[team1.sport_id]
-        }`}</div>
+        <div>{state}</div>
+        <div>{sport}</div>
       </div>
 
       <div className="game-row team-row">
-        <div>{`${homeTeam["team"].name} ${homeTeam["team"].mascot}`}</div>
-        <div>{homeTeam["score"]}</div>
+        <div className="mascot-team">
+          {homeTeamImg}
+          <div>{homeTeamName}</div>
+        </div>
+        <div className="team-score">{homeTeam["score"]}</div>
       </div>
       <div className="game-row team-row">
-        <div>{`${awayTeam["team"].name} ${awayTeam["team"].mascot}`}</div>
-        <div>{awayTeam["score"]}</div>
+        <div className="mascot-team">
+          {awayTeamImg}
+          <div>{awayTeamName}</div>
+        </div>
+
+        <div className="team-score">{awayTeam["score"]}</div>
       </div>
     </div>
   );

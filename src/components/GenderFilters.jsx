@@ -1,4 +1,4 @@
-import "../styles/GenderFilters.css";
+import "../styles/filters.css";
 
 export default function GenderFilters({ genderId, setGenderId }) {
   return (

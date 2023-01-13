@@ -5,6 +5,7 @@ import Game from "./Game";
 import "../styles/App.css";
 import dayjs from "dayjs";
 import GenderFilters from "./GenderFilters";
+import StatusFilters from "./StatusFilters";
 
 export default function App() {
   const todaysDate = new Date(Date.now()).toISOString().substring(0, 10);
@@ -12,7 +13,7 @@ export default function App() {
   const [sportId, setSportId] = useState("");
   const [stateCode, setStateCode] = useState("");
   const [genderId, setGenderId] = useState("");
-
+  const [statusId, setStatusId] = useState("");
   const [games, setGames] = useState([]);
 
   useEffect(() => {
@@ -29,6 +30,9 @@ export default function App() {
       if (genderId) {
         url.searchParams.append("gender_id", genderId);
       }
+      if (statusId) {
+        url.searchParams.append("status_id", statusId);
+      }
 
       const response = await fetch(url, { mode: "cors" });
       const json = await response.json();
@@ -36,7 +40,7 @@ export default function App() {
     }
 
     updateGames();
-  }, [date, sportId, stateCode, genderId]);
+  }, [date, sportId, stateCode, genderId, statusId]);
 
   return (
     <>
@@ -47,6 +51,7 @@ export default function App() {
         <SportSelect setSportId={setSportId} />
         <StateSelect setStateCode={setStateCode} />
         <GenderFilters genderId={genderId} setGenderId={setGenderId} />
+        <StatusFilters statusId={statusId} setStatusId={setStatusId} />
       </form>
 
       <h2>Games for {dayjs(date).format("dddd, MMMM D, YYYY")}</h2>

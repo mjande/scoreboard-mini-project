@@ -55,8 +55,6 @@ export default function Game({ data }) {
   const homeTeamName = `${homeTeam["team"].name} ${homeTeamMascot}`;
   const awayTeamName = `vs. ${awayTeam["team"].name} ${awayTeamMascot}`;
 
-  console.log(awayTeam["team"].mascot);
-
   return (
     <div data-testid={"game"} className="game-container">
       <div className="game-row info-row">

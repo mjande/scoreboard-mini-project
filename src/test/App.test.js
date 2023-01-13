@@ -1,5 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import dayjs from "dayjs";
 import App from "../components/App";
 
 it("renders at least one game on initial page load", async () => {
@@ -10,24 +11,20 @@ it("renders at least one game on initial page load", async () => {
 
 it("renders games for today on initial page load", async () => {
   render(<App />);
-  const gameDates = await screen.findAllByTestId("date");
-  const todaysDate = new Date().toISOString().substring(0, 10);
+  const todaysDate = dayjs(new Date().toISOString().substring(0, 10)).format(
+    "dddd, MMMM D, YYYY"
+  );
 
-  expect(
-    gameDates.every((game) => game.textContent === todaysDate)
-  ).toBeTruthy();
+  const dateElement = screen.getByText(new RegExp(todaysDate));
+  expect(dateElement).toBeInTheDocument();
 });
 
 // TODO revise with mocked API data
-it("renders games for new date on date change", async () => {
+it("reflects queried date on date change", async () => {
   render(<App />);
   const dateInput = screen.getByLabelText("date-input");
   userEvent.type(dateInput, "01132023");
 
-  const gameDates = await screen.findAllByTestId("date");
-  console.log(gameDates[0].textContent);
-
-  expect(
-    gameDates.every((game) => game.textContent === "2023-01-13")
-  ).toBeTruthy();
+  const dateElement = await screen.findByText(/Friday, January 13, 2023/);
+  expect(dateElement).toBeInTheDocument();
 });

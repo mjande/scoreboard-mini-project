@@ -15,7 +15,7 @@ Because of some issues I had with the endpoint's CORS policy, I implemented 'cor
 ```bash
 git clone https://github.com/mjande/scoreboard-mini-project
 npm install 
-cors-backdoor --target https://api.scorebooklive.com
+npx cors-backdoor --target https://api.scorebooklive.com
 npm start
 ```
 
